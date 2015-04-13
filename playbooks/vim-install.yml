@@ -1,0 +1,7 @@
+---
+- name: Install vim and it's configuraton
+  hosts: all 
+  gather_facts: false
+  roles:
+      - common
+      - vim-install

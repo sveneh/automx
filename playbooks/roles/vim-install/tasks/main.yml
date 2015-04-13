@@ -1,0 +1,14 @@
+---
+- name: Install vim (text)
+  sudo: yes
+  apt: pkg=vim install_recommends=False state=present
+
+- name: Install gVim
+  sudo: yes
+  apt: pkg=vim-gtk install_recommends=False state=present
+  when: vim_install_gvim
+
+#- name: set vim as default editor
+#  alternatives: "link={{ item }} target=/usr/bin/vim.basic"
+#  with_items: [editor, ex, rview, rvim, vi, view, vim, vimdiff]
+    

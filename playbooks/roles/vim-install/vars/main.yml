@@ -1,0 +1,4 @@
+---
+vim_install_gvim: true
+vim_install_configure: true
+
