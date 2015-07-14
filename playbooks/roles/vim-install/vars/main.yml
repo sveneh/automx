@@ -1,4 +1,6 @@
 ---
 vim_install_gvim: true
 vim_install_configure: true
+vim_install_tools: true
+vim_install_config: true
 

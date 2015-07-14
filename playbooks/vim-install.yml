@@ -1,5 +1,5 @@
 ---
-- name: Install vim and it's configuraton
+- name: Install vim and its configuraton
   hosts: all 
   gather_facts: false
   roles:
