@@ -9,7 +9,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 apt-get install --yes software-properties-common
-apt-add-repository --yes ppa:ansible/ansible
+apt-add-repository --yes ppa:ansible/ansible-1.9
 apt-get update
 apt-get install --yes ansible
 
