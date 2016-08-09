@@ -1,0 +1,8 @@
+---
+- name: Install OpenSSH client
+  apt: name=openssh-client state=present
+
+- name: Disable locale forwarding by default
+  # http://askubuntu.com/questions/144235/locale-variables-have-no-effect-in-remote-shell-perl-warning-setting-locale-f
+  replace: dest=/etc/ssh/ssh_config regexp='^(\s+SendEnv LANG.*)' replace='#\1' 
+  
