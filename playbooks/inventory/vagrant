@@ -1,0 +1,4 @@
+# to be used within vagrant only
+
+controller ansible_connection=local
+workstation ansible_ssh_host=172.17.177.20 ansible_ssh_private_key_file=/vagrant/.vagrant/machines/workstation/virtualbox/private_key

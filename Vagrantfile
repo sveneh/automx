@@ -13,7 +13,6 @@ Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/trusty64"
-  config.vm.define "ansible-control"
   
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -62,8 +61,18 @@ Vagrant.configure(2) do |config|
   #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
   # end
 
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
-  # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", path: "./ansible-install.sh"
+  config.vm.define 'workstation' do |machine|
+      machine.vm.network "private_network", ip: "172.17.177.20"
+  end
+
+  config.vm.define 'controller' do |machine|
+      machine.vm.network "private_network", ip: "172.17.177.10"
+
+      machine.vm.provision "bootstrap", type: "shell", path: "./ansible-install.sh"
+      machine.vm.provision "ansible", type: "shell" do |s|
+          s.env = {"ANSIBLE_CONFIG" => "ansible-vagrant.cfg"}
+          s.inline ="cd /vagrant && ansible-playbook -i playbooks/inventory/vagrant playbooks/site.yml -u vagrant"
+      end
+  end
+
 end

@@ -1,0 +1,7 @@
+---
+- name: Setup workstation
+  hosts: workstation 
+  gather_facts: false
+  roles:
+      - common
+      - vim-install
