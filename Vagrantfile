@@ -71,7 +71,7 @@ Vagrant.configure(2) do |config|
       machine.vm.provision "bootstrap", type: "shell", path: "./ansible-install.sh"
       machine.vm.provision "ansible", type: "shell" do |s|
           s.env = {"ANSIBLE_CONFIG" => "ansible-vagrant.cfg"}
-          s.inline ="cd /vagrant && ansible-playbook -i playbooks/inventory/vagrant playbooks/site.yml -u vagrant"
+          s.inline ="cd /vagrant && ansible-playbook -i inventory/vagrant site.yml -u vagrant"
       end
   end
 

@@ -1,7 +1,0 @@
----
-- name: Install vim and its configuraton
-  hosts: all 
-  gather_facts: false
-  roles:
-      - common
-      - vim-install
