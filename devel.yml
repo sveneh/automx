@@ -1,0 +1,6 @@
+---
+- name: Ansible development testing
+  hosts: workstation 
+  gather_facts: true
+  roles:
+    - ansible-role-virtualbox
