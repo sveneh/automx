@@ -1,0 +1,30 @@
+---
+
+- name: install cups server
+  apt:
+    pkg: cups
+    state: present
+
+- name: configure cups server
+  copy:
+    src: cupsd.conf
+    dest: /etc/cups/cupsd.conf 
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart cups
+
+- name: enable cups webadmin access
+  user:
+    name: "{{ item }}"
+    groups: lpadmin
+    append: true
+  with_items: "{{ cups_admin_users }}"
+
+
+- name: ensure service runs 
+  service:
+    name: cups
+    state: running
+    enabled: true

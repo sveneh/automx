@@ -19,6 +19,10 @@ Vagrant.configure(2) do |config|
           s.inline = "sudo service network-manager stop && ifdown eth1 && ifup eth1"
       end
   end
+  
+  config.vm.define 'server' do |machine|
+      machine.vm.network "private_network", ip: "172.17.177.21"
+  end
 
   config.vm.define 'controller' do |machine|
       machine.vm.network "private_network", ip: "172.17.177.10"
