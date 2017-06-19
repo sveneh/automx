@@ -1,0 +1,5 @@
+---
+# ansible still does not work with python 3!
+# https://gist.github.com/gwillem/4ba393dceb55e5ae276a87300f6b8e6f
+- name: install python 2 runtime
+  raw: test -e /usr/bin/python || (apt --yes update && apt install --yes python-minimal)

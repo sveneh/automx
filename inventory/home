@@ -1,0 +1,4 @@
+paracetamol ansible_user=sveneh
+
+[server]
+paracetamol

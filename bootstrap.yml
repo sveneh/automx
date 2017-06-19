@@ -1,0 +1,7 @@
+---
+- name: Bootstrap servers for ansible usage
+  hosts: server 
+  gather_facts: false
+  roles:
+      - ansible_client_bootstrap
+      - user_bootstrap

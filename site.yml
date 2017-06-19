@@ -6,3 +6,9 @@
       - common
       - vim-install
       - ansible-role-virtualbox
+
+- name: Setup server
+  hosts: server 
+  gather_facts: false
+  roles:
+      - ansible_client_bootstrap

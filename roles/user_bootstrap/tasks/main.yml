@@ -1,0 +1,16 @@
+# run with ansible-playbook -i inventory/home bootstrap.yml -l server -v -k --step -K
+---
+- name: Change user directory permissions to 750
+  file: path=/home/{{ ansible_user }} state=directory mode=750
+
+- name: Add or update authorized key
+  action: authorized_key user={{ ansible_user }} key="{{ lookup('file', '~/.ssh/home.pub') }}"
+
+- name: allow nopasswd sudo
+  become: true
+  copy:
+    src: ansible.sudoer
+    dest: /etc/sudoers.d/01ansible
+    owner: root
+    group: root
+    mode: 0440
