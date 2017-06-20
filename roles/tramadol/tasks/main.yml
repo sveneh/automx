@@ -1,0 +1,18 @@
+---
+- name: Mount data disk 
+  become: true
+  mount:
+    path: /media/data
+    src: UUID=521e94af-d0f5-460d-9e4e-63f649e0fc26 # sdb1
+    fstype: ext4
+    opts: rw,acl
+    state: mounted
+
+- name: Configure BD drive
+  become: true
+  mount:
+    path: /media/rom
+    src: /dev/scd0
+    fstype: udf,iso9660
+    opts: user,noauto,exec,utf8
+    state: present

@@ -7,8 +7,10 @@
       - vim-install
       - ansible-role-virtualbox
 
-- name: Setup server
-  hosts: server 
+- name: Setup main server
+  hosts: tramadol 
   gather_facts: false
   roles:
       - ansible_client_bootstrap
+      - common
+      - tramadol

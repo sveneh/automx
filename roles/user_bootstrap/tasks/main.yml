@@ -4,7 +4,7 @@
   file: path=/home/{{ ansible_user }} state=directory mode=750
 
 - name: Add or update authorized key
-  action: authorized_key user={{ ansible_user }} key="{{ lookup('file', '~/.ssh/home.pub') }}"
+  authorized_key: user={{ ansible_user }} key="{{ lookup('file', '~/.ssh/home.pub') }}"
 
 - name: allow nopasswd sudo
   become: true

@@ -1,5 +1,27 @@
 ---
+- name: configure APT to ignore recommends
+  become: true
+  copy:
+    src: apt.conf
+    dest: /etc/apt/apt.conf.d/90local
+    owner: root
+    group: root
 
 - name: Update repository cache
-  sudo: yes
+  become: true
   apt: update_cache=yes cache_valid_time=3600
+
+- name: Install common cmdline tools
+  become: true
+  apt:  pkg={{ item }} state=present 
+  with_items:
+    - aptitude
+    - byobu
+    - htop
+    - multitail
+    - vim
+    - grep 
+    - silversearcher-ag
+    - exuberant-ctags
+    - build-essential
+    - git
