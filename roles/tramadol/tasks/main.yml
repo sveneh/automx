@@ -1,6 +1,5 @@
 ---
 - name: Mount data disk 
-  become: true
   mount:
     path: /media/data
     src: UUID=521e94af-d0f5-460d-9e4e-63f649e0fc26 # sdb1
@@ -9,7 +8,6 @@
     state: mounted
 
 - name: Configure BD drive
-  become: true
   mount:
     path: /media/rom
     src: /dev/scd0

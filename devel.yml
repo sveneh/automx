@@ -1,7 +1,6 @@
 ---
 - name: Ansible development testing
   hosts: server 
-  become: true
   gather_facts: true
   roles:
     - { role: cups, cups_admin_users: [vagrant] }

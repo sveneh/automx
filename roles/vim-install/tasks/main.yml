@@ -1,15 +1,12 @@
 ---
 - name: Install vim (text)
-  sudo: yes
   apt: pkg=vim install_recommends=False state=present
 
 - name: Install gVim
-  sudo: yes
   apt: pkg=vim-gtk install_recommends=False state=present
   when: vim_install_gvim
 
 - name: Install helper tools
-  sudo: yes
   apt:  pkg={{ item }} install_recommends=False state=present 
   with_items:
     - grep 
