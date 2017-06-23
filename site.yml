@@ -13,4 +13,5 @@
   roles:
       - ansible_client_bootstrap
       - common
+      - cups
       - tramadol

@@ -26,5 +26,5 @@
 - name: ensure service runs 
   service:
     name: cups
-    state: running
+    state: started
     enabled: true
