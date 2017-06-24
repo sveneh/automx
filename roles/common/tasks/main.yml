@@ -13,12 +13,13 @@
   apt:  pkg={{ item }} state=present 
   with_items:
     - aptitude
+    - build-essential
     - byobu
+    - exuberant-ctags
+    - git
+    - grep 
     - htop
     - multitail
-    - vim
-    - grep 
     - silversearcher-ag
-    - exuberant-ctags
-    - build-essential
-    - git
+    - stow
+    - vim
