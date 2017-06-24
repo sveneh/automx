@@ -12,6 +12,7 @@
   gather_facts: false
   roles:
       - ansible_client_bootstrap
-      - common
-      - cups
       - tramadol
+      - common
+      - common-gui
+      - cups

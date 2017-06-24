@@ -1,0 +1,42 @@
+---
+
+- name: add 3rd party signing keys
+  apt_key:
+    url: "{{ item }}"
+    state: present
+  with_items:
+    - https://dl.google.com/linux/linux_signing_key.pub         # chrome
+    - http://download.videolan.org/pub/debian/videolan-apt.asc  # libdvdcss 
+
+- name: add Insync repo signing key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: ACCAF35C
+    state: present
+
+- name: add 3rd party repositories
+  apt_repository:
+    filename: "{{ item.filename }}" 
+    repo: "{{ item.repo }}" 
+    state: present
+  with_items:
+    - { filename: 'chrome',    repo: 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'     } 
+    - { filename: 'insync',    repo: 'deb [arch=amd64] http://apt.insynchq.com/ubuntu xenial non-free contrib' } 
+    - { filename: 'libdvdcss', repo: 'deb [arch=amd64] http://download.videolan.org/pub/debian/stable/ /'      }
+
+- name: Update repository cache
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Install common gui tools
+  apt:  pkg={{ item }} state=present 
+  with_items:
+    - google-chrome-stable 
+    - insync
+    - indicator-multiload
+    - libdvdcss2
+
+- name: Install restricted extras
+  apt:
+    pkg: ubuntu-restricted-extras
+    install_recommends: true # this package has all dependencies only as recommendations
+    state: present
